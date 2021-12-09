@@ -1,12 +1,18 @@
 // Make it count up on a timer, calling this function
 let seconds = document.getElementById("seconds");
-let countUp = function() {
-    // ?
-};
-
-// How can you make it stop counting?
-let stopCountUp = function() {
-};
 let stopButton = document.getElementById("stop-button");
-stopButton.addEventListener("click", stopCountUp);
+
+function countUp() {
+    let time = setTimeout( () => {
+        seconds.innerHTML = (parseFloat(seconds.innerHTML) + 1).toString();
+        countUp();
+    }, 1000);
+
+    let stopCountUp = () => {
+        clearTimeout(time)
+    }
+    stopButton.addEventListener("click", stopCountUp);
+}
+
+countUp();
 
